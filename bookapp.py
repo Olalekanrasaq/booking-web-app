@@ -5,6 +5,17 @@ import pandas as pd
 import streamlit.components.v1
 from streamlit_gsheets import GSheetsConnection
 
+st.set_page_config(
+    page_title="TGA Booking",
+    page_icon=":calendar:",
+    layout="wide",
+    menu_items={
+        'Get Help': 'mailto:olalekanrasaq1331@gmail.com',
+        'Report a bug': "mailto:olalekanrasaq1331@gmail.com",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+)
+
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 st.title("Booking App")
