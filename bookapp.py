@@ -18,13 +18,14 @@ st.set_page_config(
 
 conn = st.connection("gsheets", type=GSheetsConnection)
 
+
 st.title("Booking App")
 st.markdown("---")
 
 st.sidebar.header("TGA Booking")
 
 selection = st.sidebar.radio("Request", 
-                             ["Booking Calendar", "Book Apartment"])
+                             ["Booking Calendar", "Book Apartment", "Check Booking Records"])
 
 if selection == "Booking Calendar":
     st.info("Dates colored red have been booked")
@@ -79,7 +80,11 @@ if selection == "Booking Calendar":
         # JavaScript and Python communication handler
         streamlit.components.v1.html(fullcalendar_code, height=500)
 
-        st.markdown("---")
+elif selection == "Check Booking Records":
+    apartment = st.selectbox("Select Apartment", ["-", "Upper floor", "Middle floor", "Ground floor"])
+    if apartment != "-":
+        bookings = conn.read(worksheet="booking", ttl=5)
+        bookings = bookings[bookings["Apartment"] == apartment]
         st.markdown("###### Booking records for the selected apartments")
         st.dataframe(bookings, hide_index=True)
 
