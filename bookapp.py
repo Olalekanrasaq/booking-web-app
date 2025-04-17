@@ -78,7 +78,7 @@ if selection == "Booking Calendar":
         """
 
         # JavaScript and Python communication handler
-        streamlit.components.v1.html(fullcalendar_code, width=250, height=250)
+        streamlit.components.v1.html(fullcalendar_code, height=250)
 
 elif selection == "Check Booking Records":
     apartment = st.selectbox("Select Apartment", ["-", "Upper floor", "Middle floor", "Ground floor"])
