@@ -91,6 +91,7 @@ elif selection == "Check Booking Records":
 
 elif selection == "Book Apartment":
     st.subheader("Book Apartment")
+    booking_date = st.date_input("Booking Date")
     name = st.text_input("Name of the Customer")
     address = st.text_input("Address")
     phone = st.text_input("Phone Number")
@@ -133,7 +134,8 @@ elif selection == "Book Apartment":
                     "Apartment": apartment,
                     "Check_in": check_in.isoformat(),
                     "Check_out": check_out.isoformat(),
-                    "Days": (check_out - check_in).days
+                    "Days": (check_out - check_in).days,
+                    "BookingDate": booking_date.isoformat()
                 }
 
                 # Convert the new row into a DataFrame
@@ -147,3 +149,4 @@ elif selection == "Book Apartment":
 
         else:
             st.error("Invalid booking code! You are not authorized to book")
+
